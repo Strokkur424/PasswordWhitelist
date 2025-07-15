@@ -1,0 +1,8 @@
+name: PasswordWhitelist
+version: $version
+api-version: $mcVersion
+
+folia-supported: true
+
+main: net.strokkur.passwordwhitelist.PasswordWhitelist
+bootstrapper: net.strokkur.passwordwhitelist.PasswordWhitelistBootstrap
