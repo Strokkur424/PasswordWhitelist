@@ -171,13 +171,13 @@ class PasswordWhitelistCommand {
 
         sender.sendMessage(messages().show(Placeholder.component("password", password)));
     }
-    
+
     @Executes("attempts")
     @Permission("passwordwhitelist.command.attempts")
     void executeAttemptsHelp(CommandSender sender) {
         messages().help().attempts(sender, messages().tags(), messages().colors());
     }
-    
+
     @Executes("attempts reset")
     @Permission("passwordwhitelist.command.attempts")
     void executeAttemptsResetHelp(CommandSender sender) {

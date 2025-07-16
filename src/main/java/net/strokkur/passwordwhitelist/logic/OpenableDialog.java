@@ -19,7 +19,7 @@ import net.kyori.adventure.audience.Audience;
  * to an audience.
  */
 public interface OpenableDialog {
-    
+
     /**
      * Show the stored dialog to an audience.
      *

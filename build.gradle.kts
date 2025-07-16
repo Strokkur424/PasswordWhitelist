@@ -64,6 +64,7 @@ java {
 spotless {
     java {
         licenseHeaderFile(rootProject.file("HEADER"))
+        removeUnusedImports()
         target("**/*.java")
     }
 }

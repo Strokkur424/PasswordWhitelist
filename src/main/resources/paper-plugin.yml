@@ -24,23 +24,23 @@ permissions:
   passwordwhitelist.command.enable:
     description: Permission required to run the '/passwordwhitelist enable' subcommand
     default: true
-    
+  
   passwordwhitelist.command.disable:
     description: Permission required to run the '/passwordwhitelist disable' subcommand
     default: true
-    
+  
   passwordwhitelist.command.attempts:
     description: Permission required to run the '/passwordwhitelist attempts' subcommand
     default: true
-    
+  
   passwordwhitelist.command.password:
     description: Permission required to run the '/passwordwhitelist password' subcommand
     default: true
-    
+  
   passwordwhitelist.command.password.set:
     description: Permission required to run the '/passwordwhitelist password set' subcommand
     default: op
-    
+  
   passwordwhitelist.command.password.show:
     description: Permission required to run the '/passwordwhitelist password show' subcommand
     default: op

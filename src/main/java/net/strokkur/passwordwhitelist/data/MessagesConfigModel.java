@@ -54,7 +54,7 @@ class MessagesConfigModel {
 
     @CustomParse("parseWithPrefix")
     String show;
-    
+
     @CustomParse("parseWithPrefix")
     String resetAttempts;
 
@@ -65,10 +65,6 @@ class MessagesConfigModel {
     String disconnect;
 
     Help help;
-
-    public Component parseWithPrefix(String message, TagResolver... resolvers) {
-        return parseWithPrefix(message, this.tags, this.colors, resolvers);
-    }
 
     private static Component parseWithPrefix(String message, Map<String, String> tags, Map<String, String> colors, TagResolver... resolvers) {
         MiniMessage mm = MiniMessage.miniMessage();
@@ -100,6 +96,10 @@ class MessagesConfigModel {
         ));
     }
 
+    public Component parseWithPrefix(String message, TagResolver... resolvers) {
+        return parseWithPrefix(message, this.tags, this.colors, resolvers);
+    }
+
     @ConfigSerializable
     static class Help {
 
@@ -120,10 +120,10 @@ class MessagesConfigModel {
 
         @CustomParse("sendToSender")
         String passwordSet;
-        
+
         @CustomParse("sendToSender")
         String attempts;
-        
+
         @CustomParse("sendToSender")
         String attemptsReset;
 

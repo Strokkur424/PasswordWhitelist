@@ -22,8 +22,8 @@ import net.strokkur.passwordwhitelist.data.MessagesConfigImpl;
 import net.strokkur.passwordwhitelist.data.PasswordManager;
 import net.strokkur.passwordwhitelist.data.PasswordStore;
 import net.strokkur.passwordwhitelist.logic.BlockedDialog;
-import net.strokkur.passwordwhitelist.logic.PasswordDialog;
 import net.strokkur.passwordwhitelist.logic.OpenableDialog;
+import net.strokkur.passwordwhitelist.logic.PasswordDialog;
 import net.strokkur.passwordwhitelist.logic.ServerJoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +33,7 @@ public class PasswordWhitelist extends JavaPlugin {
 
     @MonotonicNonNull
     private MainConfig mainConfig = null;
-    
+
     @MonotonicNonNull
     private MessagesConfig messagesConfig = null;
 
@@ -42,13 +42,13 @@ public class PasswordWhitelist extends JavaPlugin {
 
     @MonotonicNonNull
     private PasswordManager passwordManager = null;
-    
+
     @MonotonicNonNull
     private OpenableDialog passwordDialog = null;
-    
+
     @MonotonicNonNull
     private OpenableDialog blockedDialog = null;
-    
+
     @MonotonicNonNull
     private FailedAttemptsStore failedAttempts = null;
 
@@ -63,7 +63,7 @@ public class PasswordWhitelist extends JavaPlugin {
         try {
             mainConfig = new MainConfigImpl();
             mainConfig.reload(this);
-            
+
             messagesConfig = new MessagesConfigImpl();
             messagesConfig.reload(this);
 
@@ -88,15 +88,15 @@ public class PasswordWhitelist extends JavaPlugin {
             Bukkit.getPluginManager().disablePlugin(this);
             return;
         }
-        
+
         Bukkit.getPluginManager().registerEvents(new ServerJoinListener(), this);
     }
-    
+
     public void reloadDialogs() {
         passwordDialog = new PasswordDialog(mainConfig, failedAttempts);
         blockedDialog = new BlockedDialog(mainConfig);
-    }    
-    
+    }
+
     public MainConfig getMainConfig() {
         return mainConfig;
     }
@@ -108,7 +108,7 @@ public class PasswordWhitelist extends JavaPlugin {
     public PasswordStore getPasswordStore() {
         return passwordStore;
     }
-    
+
     public FailedAttemptsStore getFailedAttempts() {
         return failedAttempts;
     }
@@ -116,11 +116,11 @@ public class PasswordWhitelist extends JavaPlugin {
     public PasswordManager getPasswordManager() {
         return passwordManager;
     }
-    
+
     public OpenableDialog getPasswordDialog() {
         return passwordDialog;
     }
-    
+
     public OpenableDialog getBlockedDialog() {
         return blockedDialog;
     }

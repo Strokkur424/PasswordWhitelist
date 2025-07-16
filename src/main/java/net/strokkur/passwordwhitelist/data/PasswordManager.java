@@ -28,33 +28,31 @@ public interface PasswordManager {
 
     /**
      * Get whether a password is required to join the server.
-     * 
+     *
      * @return whether a password is required
      */
     boolean isPasswordEnabled();
-
+    /**
+     * Set the password requirement.
+     *
+     * @param value whether the password should be required
+     * @throws IOException if an exception occurs while saving the file
+     */
+    void setPasswordEnabled(boolean value) throws IOException;
     /**
      * Enable the password requirement for joining the server.
-     * 
+     *
      * @throws IOException if an exception occurs while saving the file
      */
     default void enablePassword() throws IOException {
         setPasswordEnabled(true);
     }
-
     /**
      * Disable the password requirement for joining the server.
+     *
      * @throws IOException if an exception occurs while saving the file
      */
     default void disablePassword() throws IOException {
         setPasswordEnabled(false);
     }
-
-    /**
-     * Set the password requirement.
-     * 
-     * @param value whether the password should be required
-     * @throws IOException if an exception occurs while saving the file
-     */
-    void setPasswordEnabled(boolean value) throws IOException;
 }

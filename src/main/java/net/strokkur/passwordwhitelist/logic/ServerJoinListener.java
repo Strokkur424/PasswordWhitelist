@@ -114,7 +114,6 @@ public class ServerJoinListener implements Listener {
         if (key.equals(Key.key("passwordwhitelist:response/abort"))) {
             // If the identifier is the same as the disagree one, set the connection result to false
             setConnectionJoinResult(event.getCommonConnection(), JoinResult.DISCONNECT);
-            return;
         }
     }
 
@@ -134,7 +133,7 @@ public class ServerJoinListener implements Listener {
             if (!plugin.getMainConfig().resetAttemptsOnCorrect()) {
                 return;
             }
-            
+
             UUID uuid = e.getProfile().getId();
             try {
                 plugin.getFailedAttempts().setFailedAttempts(uuid, 0);

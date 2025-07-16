@@ -36,9 +36,9 @@ class MainConfigModel {
 
     public int maxIncorrectPasswordAttempts;
     public boolean resetAttemptsOnCorrect;
-    
+
     public PasswordDialog passwordDialog;
-    
+
     public BlockedDialog blockedDialog;
 
     @ConfigSerializable
@@ -52,16 +52,16 @@ class MainConfigModel {
 
         @CustomParse("asComponent")
         String label;
-        
+
         @CustomParse("asComponent")
         String buttonPasswordAttempt;
-        
+
         @CustomParse("asComponent")
         String buttonPasswordAttemptHover;
-        
+
         @CustomParse("asComponent")
         String buttonAbort;
-        
+
         @CustomParse("asComponent")
         String buttonAbortHover;
 
@@ -76,11 +76,11 @@ class MainConfigModel {
             for (String value : values) {
                 out.add(asComponent(value, resolvers));
             }
-            
+
             return Collections.unmodifiableList(out);
         }
     }
-    
+
     @ConfigSerializable
     static class BlockedDialog {
 
@@ -89,13 +89,13 @@ class MainConfigModel {
 
         @CustomParse("asComponents")
         List<String> extraText;
-        
+
         @CustomParse("asComponent")
         String button;
-        
+
         @CustomParse("asComponent")
         String buttonHover;
-        
+
         int contentWidth = 400;
 
         Component asComponent(String value, TagResolver... resolvers) {
@@ -107,7 +107,7 @@ class MainConfigModel {
             for (String value : values) {
                 out.add(asComponent(value, resolvers));
             }
-            
+
             return Collections.unmodifiableList(out);
         }
     }
