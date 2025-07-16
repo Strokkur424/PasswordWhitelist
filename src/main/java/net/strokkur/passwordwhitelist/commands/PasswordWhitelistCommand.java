@@ -36,17 +36,17 @@ class PasswordWhitelistCommand {
     @Executes("help")
     @Permission("passwordwhitelist.command.help")
     void executeHelp(CommandSender sender) {
-        messages().help().main(sender);
+        messages().help().main(sender, messages().tags(), messages().colors());
     }
 
     @Executes("help")
     @Permission("passwordwhitelist.command.help")
     void executeHelp(CommandSender sender, @Literal({"reload", "enable", "disable", "password"}) String help) {
         switch (help) {
-            case "reload" -> messages().help().reload(sender);
-            case "enable" -> messages().help().enable(sender);
-            case "disable" -> messages().help().disable(sender);
-            case "password" -> messages().help().password(sender);
+            case "reload" -> messages().help().reload(sender, messages().tags(), messages().colors());
+            case "enable" -> messages().help().enable(sender, messages().tags(), messages().colors());
+            case "disable" -> messages().help().disable(sender, messages().tags(), messages().colors());
+            case "password" -> messages().help().password(sender, messages().tags(), messages().colors());
         }
     }
 
@@ -115,13 +115,13 @@ class PasswordWhitelistCommand {
     @Executes("password")
     @Permission("passwordwhitelist.command.password")
     void executePasswordHelp(CommandSender sender) {
-        messages().help().password(sender);
+        messages().help().password(sender, messages().tags(), messages().colors());
     }
 
     @Executes("password set")
     @Permission("passwordwhitelist.command.password.set")
     void executePasswordSetHelp(CommandSender sender) {
-        messages().help().passwordSet(sender);
+        messages().help().passwordSet(sender, messages().tags(), messages().colors());
     }
 
     @Executes("password set")
