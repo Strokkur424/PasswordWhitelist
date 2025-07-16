@@ -7,7 +7,7 @@ import net.strokkur.commands.annotations.Executes;
 import net.strokkur.commands.annotations.Literal;
 import net.strokkur.commands.annotations.Permission;
 import net.strokkur.passwordwhitelist.PasswordWhitelist;
-import net.strokkur.passwordwhitelist.config.MessagesConfig;
+import net.strokkur.passwordwhitelist.data.MessagesConfig;
 import org.bukkit.command.CommandSender;
 import org.jspecify.annotations.NullMarked;
 

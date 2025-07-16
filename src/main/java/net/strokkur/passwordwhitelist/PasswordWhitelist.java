@@ -1,7 +1,7 @@
 package net.strokkur.passwordwhitelist;
 
-import net.strokkur.passwordwhitelist.config.MessagesConfig;
-import net.strokkur.passwordwhitelist.config.MessagesConfigImpl;
+import net.strokkur.passwordwhitelist.data.MessagesConfig;
+import net.strokkur.passwordwhitelist.data.MessagesConfigImpl;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
