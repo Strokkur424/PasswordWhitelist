@@ -18,6 +18,8 @@ import io.papermc.paper.dialog.DialogResponseView;
 import io.papermc.paper.event.connection.configuration.AsyncPlayerConnectionConfigureEvent;
 import io.papermc.paper.event.player.PlayerCustomClickEvent;
 import net.kyori.adventure.key.Key;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.model.user.User;
 import net.strokkur.passwordwhitelist.PasswordWhitelist;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -43,6 +45,25 @@ public class ServerJoinListener implements Listener {
     @EventHandler
     void onPlayerConfigure(AsyncPlayerConnectionConfigureEvent event) {
         PasswordWhitelist plugin = PasswordWhitelist.getInstance();
+
+        LuckPerms lp = plugin.getLuckPerms();
+        if (lp != null) {
+            UUID uuid = event.getConnection().getProfile().getId();
+            if (uuid == null) {
+                throw new IllegalStateException("Connecting player has null UUID");
+            }
+
+            User user = lp.getUserManager().getUser(uuid);
+
+            boolean skipPasswordAuth = false;
+            if (user != null) {
+                skipPasswordAuth = user.getCachedData().getPermissionData().checkPermission("passwordwhitelist.exclude").asBoolean();
+            }
+            
+            if (skipPasswordAuth) {
+                return;
+            }
+        }
 
         // Only show a password dialog if a password is required and set
         if (!plugin.getPasswordManager().isPasswordEnabled()) {

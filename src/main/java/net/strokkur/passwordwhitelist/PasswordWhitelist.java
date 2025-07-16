@@ -12,6 +12,7 @@
  */
 package net.strokkur.passwordwhitelist;
 
+import net.luckperms.api.LuckPerms;
 import net.strokkur.passwordwhitelist.data.BasicPasswordManager;
 import net.strokkur.passwordwhitelist.data.FailedAttemptsStore;
 import net.strokkur.passwordwhitelist.data.JsonFailedAttemptsStore;
@@ -26,8 +27,11 @@ import net.strokkur.passwordwhitelist.logic.OpenableDialog;
 import net.strokkur.passwordwhitelist.logic.PasswordDialog;
 import net.strokkur.passwordwhitelist.logic.ServerJoinListener;
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
+import org.checkerframework.checker.nullness.qual.Nullable;
+import org.intellij.lang.annotations.Language;
 
 public class PasswordWhitelist extends JavaPlugin {
 
@@ -123,5 +127,29 @@ public class PasswordWhitelist extends JavaPlugin {
 
     public OpenableDialog getBlockedDialog() {
         return blockedDialog;
+    }
+    
+    @Nullable
+    public LuckPerms getLuckPerms() {
+        if (!isClassLoaded("net.luckperms.api.LuckPerms")) {
+            return null;
+        }
+        
+        RegisteredServiceProvider<LuckPerms> provider = Bukkit.getServicesManager().getRegistration(LuckPerms.class);
+        if (provider == null) {
+            return null;
+        }
+        
+        return provider.getProvider();
+    }
+    
+    @SuppressWarnings("SameParameterValue")
+    private boolean isClassLoaded(@Language("jvm-class-name") String className) {
+        try {
+            Class.forName(className);
+            return true;
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
     }
 }

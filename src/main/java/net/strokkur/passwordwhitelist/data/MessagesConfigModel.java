@@ -66,7 +66,7 @@ class MessagesConfigModel {
 
     Help help;
 
-    private static Component parseWithPrefix(String message, Map<String, String> tags, Map<String, String> colors, TagResolver... resolvers) {
+    private static Component parseStringWithPrefix(String message, Map<String, String> tags, Map<String, String> colors, TagResolver... resolvers) {
         MiniMessage mm = MiniMessage.miniMessage();
 
         List<TagResolver> extraResolvers = new ArrayList<>(colors.size() + tags.size());
@@ -97,7 +97,7 @@ class MessagesConfigModel {
     }
 
     public Component parseWithPrefix(String message, TagResolver... resolvers) {
-        return parseWithPrefix(message, this.tags, this.colors, resolvers);
+        return parseStringWithPrefix(message, this.tags, this.colors, resolvers);
     }
 
     @ConfigSerializable
@@ -128,7 +128,7 @@ class MessagesConfigModel {
         String attemptsReset;
 
         String sendToSender(String message, Audience audience, Map<String, String> tags, Map<String, String> colors, TagResolver... resolvers) {
-            audience.sendMessage(parseWithPrefix(message, tags, colors, resolvers));
+            audience.sendMessage(parseStringWithPrefix(message, tags, colors, resolvers));
             return message;
         }
     }

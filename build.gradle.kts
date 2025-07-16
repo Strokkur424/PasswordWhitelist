@@ -11,11 +11,13 @@ group = "net.strokkur"
 version = "1.0.0-DEV"
 
 repositories {
+    mavenCentral()
     maven("https://repo.papermc.io/repository/maven-public/")
     maven("https://eldonexus.de/repository/maven-public/")
 }
 
 dependencies {
+    // Paper
     compileOnly("io.papermc.paper:paper-api:1.21.7-R0.1-SNAPSHOT")
 
     // StrokkCommands
@@ -28,6 +30,9 @@ dependencies {
 
     // Configurate
     compileOnly("org.spongepowered:configurate-yaml:${libs.versions.configurate.get()}")
+    
+    // LuckPerms
+    compileOnly("net.luckperms:api:5.4")
 }
 
 fun TaskProvider<RunServer>.configureTask() {

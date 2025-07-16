@@ -8,6 +8,13 @@ main: net.strokkur.passwordwhitelist.PasswordWhitelist
 bootstrapper: net.strokkur.passwordwhitelist.PasswordWhitelistBootstrap
 loader: net.strokkur.passwordwhitelist.PasswordWhitelistLoader
 
+dependencies: 
+  server:
+    LuckPerms:
+      required: false
+      join-classpath: true
+      load: BEFORE
+
 permissions:
   passwordwhitelist.command.use:
     description: Main permission required to run the /passwordwhitelist command
@@ -44,3 +51,7 @@ permissions:
   passwordwhitelist.command.password.show:
     description: Permission required to run the '/passwordwhitelist password show' subcommand
     default: op
+  
+  passwordwhitelist.exclude:
+    description: Excludes a user from having to enter the password
+    default: false
