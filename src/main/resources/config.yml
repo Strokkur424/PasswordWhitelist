@@ -4,34 +4,58 @@
 #                                                                                                                     #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-max-incorrect-password-attempts: 2
+# The number of incorrect passwords a user may enter before they get blocked from attempting to enter the password.
+# The failed attempts can be reset using '/passwordwhitelist attempts reset <player>'.
+# Set to -1 to disable the limit.
+#    Default: 10
+max-incorrect-password-attempts: 10
+
+# Whether to reset the number of attempts, a player made if they enter the correct password.
+#    Default: true
 reset-attempts-on-correct: true
 
+# Configuration for the dialog that appears when a user is asked for the password.
 password-dialog:
+  
+  # The title of the dialog
   title: <#b089f0><b>Server Password
   
+  # The width of the extra-text field
   content-width: 400
   
+  # An array of text to display to the user
   extra-text:
     - This server requires you enter a password before you may join the server. Please input it into the text box below.
   
+  # The label above the password input text field 
   label: Enter the password
   
+  # The name of the button for attempting a password input
   button-password-attempt: <#90f089>Join the server
+  # The hover for the same button
   button-password-attempt-hover: You have <#bbfaf9><remaining_attempts></#bbfaf9>/<max_attempts> attempts left.
   
+  # The name of the button for disconnecting from the server without using a password input attempt
   button-abort: <#f08989>Quit
+  # The hover for the same button
   button-abort-hover: Leave the server.
 
+# Configuration for the dialog that appears when a user has used up all of their password attempts.
 blocked-dialog:
+  
+  # The title of the dialog
   title: <#f08989><b>Server Password
   
+  # The width of the extra-text field
   content-width: 400
   
+  # The extra text thát gets displayed to the user
   extra-text:
     - This server requires you enter a password before you may join the server.
       Unfortunately, you have <#bbfaf9>0</#bbfaf9> password attempts remaining.
       Please contact an administrator if you believe this to be a mistake.
   
+  # The name of the disconnect button
   button: <#f08989>Quit
+  # The hover for the same button
   button-hover: Leave the server.
