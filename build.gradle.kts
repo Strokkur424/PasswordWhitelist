@@ -4,6 +4,7 @@ plugins {
     id("java")
     id("xyz.jpenilla.run-paper") version "2.3.1"
     id("net.kyori.blossom") version "2.1.0"
+    id("com.diffplug.spotless") version "7.0.2"
 }
 
 group = "net.strokkur"
@@ -31,6 +32,8 @@ dependencies {
 
 fun TaskProvider<RunServer>.configureTask() {
     this.configure {
+        dependsOn(tasks.spotlessCheck)
+        
         minecraftVersion("1.21.7")
         jvmArgs("-Xmx4G", "-Xms4G", "-Dcom.mojang.eula.agree=true")
         
@@ -56,6 +59,13 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
+}
+
+spotless {
+    java {
+        licenseHeaderFile(rootProject.file("HEADER"))
+        target("**/*.java")
+    }
 }
 
 sourceSets.main {
