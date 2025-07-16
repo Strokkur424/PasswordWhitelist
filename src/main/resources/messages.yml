@@ -21,6 +21,7 @@ enable: <prefix> <secondary>Successfully <primary>enabled</primary> the password
 disable: <prefix> <secondary>Successfully <primary>disabled</primary> the password whitelist.
 set: <prefix> <secondary>Successfully set the new password to <primary><password></primary>.
 show: <prefix> <secondary>The password is currently set to <primary><password></primary>.
+reset-attempts: <prefix> <secondary>Successfully reset the attempts for <primary><player></primary>.
 
 password-incorrect: <error>Incorrect password.
 disconnect: <error>You have disconnected.
@@ -90,4 +91,22 @@ help:
        <bullet> <secondary>/passwordwhitelist password set </secondary>my cool password
        <bullet> <secondary>/passwordwhitelist password set </secondary>admin123
        <bullet> <secondary>/passwordwhitelist password set </secondary>かみちゃん
+    </primary><header_bottom>
+  
+  attempts: |-
+    <header_top><primary>
+       Help for /passwordwhitelist <b>attempts <reset></b>
+       <bullet> <secondary>Command used to manage a player's password attempt count.</secondary>
+    
+       Example usages:
+       <bullet> <secondary>/passwordwhitelist attempts </secondary>reset Strokkur24
+    </primary><header_bottom>
+  
+  attempts-reset: |-
+    <header_top><primary>
+       Help for /passwordwhitelist attempts <b>reset <player></b>
+       <bullet> <secondary>Command used to reset a player's attempt count.</secondary>
+    
+       Example usages:
+       <bullet> <secondary>/passwordwhitelist attempts </secondary>reset Strokkur42
     </primary><header_bottom>

@@ -42,6 +42,9 @@ class MessagesConfigModel {
 
     @CustomParse("parseWithPrefix")
     String show;
+    
+    @CustomParse("parseWithPrefix")
+    String resetAttempts;
 
     @CustomParse("parseWithPrefix")
     String passwordIncorrect;
@@ -105,6 +108,12 @@ class MessagesConfigModel {
 
         @CustomParse("sendToSender")
         String passwordSet;
+        
+        @CustomParse("sendToSender")
+        String attempts;
+        
+        @CustomParse("sendToSender")
+        String attemptsReset;
 
         String sendToSender(String message, Audience audience, Map<String, String> tags, Map<String, String> colors, TagResolver... resolvers) {
             audience.sendMessage(parseWithPrefix(message, tags, colors, resolvers));

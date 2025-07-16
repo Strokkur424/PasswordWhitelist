@@ -1,5 +1,6 @@
 package net.strokkur.passwordwhitelist.commands;
 
+import com.destroystokyo.paper.profile.PlayerProfile;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
@@ -15,6 +16,7 @@ import org.bukkit.command.CommandSender;
 import org.jspecify.annotations.NullMarked;
 
 import java.io.IOException;
+import java.util.UUID;
 
 import static net.strokkur.commands.StringArgType.GREEDY;
 
@@ -41,12 +43,13 @@ class PasswordWhitelistCommand {
 
     @Executes("help")
     @Permission("passwordwhitelist.command.help")
-    void executeHelp(CommandSender sender, @Literal({"reload", "enable", "disable", "password"}) String help) {
+    void executeHelp(CommandSender sender, @Literal({"reload", "enable", "disable", "password", "attempts"}) String help) {
         switch (help) {
             case "reload" -> messages().help().reload(sender, messages().tags(), messages().colors());
             case "enable" -> messages().help().enable(sender, messages().tags(), messages().colors());
             case "disable" -> messages().help().disable(sender, messages().tags(), messages().colors());
             case "password" -> messages().help().password(sender, messages().tags(), messages().colors());
+            case "attempts" -> messages().help().attempts(sender, messages().tags(), messages().colors());
         }
     }
 
@@ -155,5 +158,41 @@ class PasswordWhitelistCommand {
         }
 
         sender.sendMessage(messages().show(Placeholder.component("password", password)));
+    }
+    
+    @Executes("attempts")
+    @Permission("passwordwhitelist.command.attempts")
+    void executeAttemptsHelp(CommandSender sender) {
+        messages().help().attempts(sender, messages().tags(), messages().colors());
+    }
+    
+    @Executes("attempts reset")
+    @Permission("passwordwhitelist.command.attempts")
+    void executeAttemptsResetHelp(CommandSender sender) {
+        messages().help().attemptsReset(sender, messages().tags(), messages().colors());
+    }
+
+    @Executes("attempts reset")
+    @Permission("passwordwhitelist.command.attempts")
+    void executeAttemptsReset(CommandSender sender, PlayerProfile profile) {
+        PasswordWhitelist plugin = PasswordWhitelist.getInstance();
+
+        String name = profile.getName();
+        UUID uuid = profile.getId();
+
+        if (name == null || uuid == null) {
+            sender.sendRichMessage("<red>Invalid player!");
+            return;
+        }
+
+        try {
+            plugin.getFailedAttempts().setFailedAttempts(uuid, 0);
+            sender.sendMessage(plugin.getMessagesConfig().resetAttempts(
+                Placeholder.unparsed("player", name)
+            ));
+        } catch (IOException ioException) {
+            sender.sendRichMessage("<red>A fatal exception occurred running this command. Please check the console for any stack traces.");
+            plugin.getComponentLogger().error("An error occurred while resetting {}'s attempt count.", name, ioException);
+        }
     }
 }
