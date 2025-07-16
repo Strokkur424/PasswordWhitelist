@@ -1,6 +1,7 @@
 name: PasswordWhitelist
 version: $version
 api-version: $mcVersion
+author: Strokkur24
 
 folia-supported: true
 
