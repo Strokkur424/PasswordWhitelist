@@ -1,7 +1,8 @@
 package net.strokkur.passwordwhitelist.commands;
 
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.format.TextDecoration;
 import net.kyori.adventure.text.minimessage.tag.resolver.Placeholder;
-import net.strokkur.commands.StringArgType;
 import net.strokkur.commands.annotations.Aliases;
 import net.strokkur.commands.annotations.Command;
 import net.strokkur.commands.annotations.Executes;
@@ -65,7 +66,7 @@ class PasswordWhitelistCommand {
     @Permission("passwordwhitelist.command.enable")
     void executeEnable(CommandSender sender) {
         PasswordWhitelist plugin = PasswordWhitelist.getInstance();
-        
+
         try {
             plugin.getPasswordManager().enablePassword();
             sender.sendMessage(messages().enable());
@@ -87,5 +88,36 @@ class PasswordWhitelistCommand {
             sender.sendRichMessage("<red>A fatal exception occurred running this command. Please check the console for any stack traces.");
             plugin.getComponentLogger().error("An error occurred disabling the password whitelist.", exception);
         }
+    }
+
+    @Executes("password set")
+    @Permission("passwordwhitelist.command.password.set")
+    void executePasswordSet(CommandSender sender, @StringArg(GREEDY) String password) {
+        PasswordWhitelist plugin = PasswordWhitelist.getInstance();
+
+        try {
+            plugin.getPasswordStore().setNewPassword(password);
+            sender.sendMessage(messages().set(Placeholder.unparsed("password", password)));
+        } catch (IOException exception) {
+            sender.sendRichMessage("<red>A fatal exception occurred running this command. Please check the console for any stack traces.");
+            plugin.getComponentLogger().error("An error occurred setting a new password.", exception);
+        }
+    }
+
+    @Executes("password show")
+    @Permission("passwordwhitelist.command.password.show")
+    void executePasswordShow(CommandSender sender) {
+        PasswordWhitelist plugin = PasswordWhitelist.getInstance();
+
+        String passwordString = plugin.getPasswordStore().getCurrentPassword();
+        Component password;
+
+        if (passwordString == null) {
+            password = Component.text("<none>").decorate(TextDecoration.ITALIC);
+        } else {
+            password = Component.text(passwordString);
+        }
+
+        sender.sendMessage(messages().show(Placeholder.component("password", password)));
     }
 }

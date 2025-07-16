@@ -12,6 +12,10 @@ enable: <prefix> <#ffb669>Successfully <color:#ff8708>enabled</color> the passwo
 
 disable: <prefix> <#ffb669>Successfully <color:#ff8708>disabled</color> the password whitelist.
 
+set: <prefix> <#ffb669>Successfully set the new password to <color:#ff8708><password></color>.
+
+show: <prefix> <#ffb669>The password is currently set to <color:#ff8708><password></color>.
+
 help:
   main: |
     <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>

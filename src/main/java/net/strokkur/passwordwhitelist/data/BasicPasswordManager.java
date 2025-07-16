@@ -9,6 +9,7 @@ import java.io.StringWriter;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Base64;
 import java.util.Properties;
 
 @NullMarked
@@ -25,11 +26,24 @@ public class BasicPasswordManager implements PasswordStore, PasswordManager {
 
     private void save() throws IOException {
         Properties properties = new Properties();
-        properties.setProperty("password", password == null ? "" : password);
+
+        String base64password = "";
+        if (password != null) {
+            // The reason we are encoding the password to Base64 is not
+            // for encryption (Base64 is not a suitable encryption algorithm),
+            // but for UTF_16 charset support in the (forcefully)
+            // ISO_8859_1 encoded properties file.
+            byte[] bytes = password.getBytes(StandardCharsets.UTF_16);
+            base64password = Base64.getEncoder().encodeToString(bytes);
+        }
+
+        properties.setProperty("password", base64password);
         properties.setProperty("enabled", Boolean.toString(passwordRequired));
 
         StringWriter writer = new StringWriter();
-        properties.store(writer, "A file used by PasswordWhitelist to manage the current password and enable status.");
+        properties.store(writer, """
+            A file used by PasswordWhitelist to manage the current password and enable status.
+            You should not manually edit this file and instead use the in-game commands.""");
 
         Files.createDirectories(path.getParent());
         Files.writeString(path, writer.toString(), StandardCharsets.ISO_8859_1);
@@ -45,12 +59,15 @@ public class BasicPasswordManager implements PasswordStore, PasswordManager {
         String fileContent = Files.readString(path, StandardCharsets.ISO_8859_1);
         Properties properties = new Properties();
         properties.load(new StringReader(fileContent));
-        
-        this.password = properties.getProperty("password", "");
-        if (this.password.isBlank()) {
+
+        String passwordString = properties.getProperty("password", "");
+        if (passwordString.isBlank()) {
             this.password = null;
+        } else {
+            byte[] bytes = Base64.getDecoder().decode(passwordString);
+            this.password = new String(bytes, StandardCharsets.UTF_16);
         }
-        
+
         this.passwordRequired = Boolean.parseBoolean(properties.getProperty("enabled", "false"));
     }
 

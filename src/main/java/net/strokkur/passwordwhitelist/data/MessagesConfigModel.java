@@ -30,6 +30,12 @@ class MessagesConfigModel {
 
     @CustomParse("parseWithPrefix")
     String disable;
+    
+    @CustomParse("parseWithPrefix")
+    String set;
+    
+    @CustomParse("parseWithPrefix")
+    String show;
 
     Help help;
     
