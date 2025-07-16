@@ -1,0 +1,24 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                                                                                     #
+#                                           PasswordWhitelist Configuration                                           #
+#                                                                                                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+dialog:
+  title: A title
+  
+  extra-text:
+    - Some cool text
+    - I guess?
+  
+  label: Enter the password
+  
+  button-password-attempt: <green>Try it!
+  
+  button-password-attempt-hover: Do it!
+  
+  button-abort: <red>Quit!
+  
+  button-abort-hover: Press to quit!
+  
+  
