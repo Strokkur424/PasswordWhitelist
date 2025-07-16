@@ -51,6 +51,21 @@ class MessagesConfigModel {
 
         @CustomParse("sendToSender")
         String main;
+        
+        @CustomParse("sendToSender")
+        String reload;
+        
+        @CustomParse("sendToSender")
+        String enable;
+        
+        @CustomParse("sendToSender")
+        String disable;
+        
+        @CustomParse("sendToSender")
+        String password;
+        
+        @CustomParse("sendToSender")
+        String passwordSet;
 
         String sendToSender(String message, Audience audience, TagResolver... resolvers) {
             audience.sendMessage(MiniMessage.miniMessage().deserialize(message, resolvers));

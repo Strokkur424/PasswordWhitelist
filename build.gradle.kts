@@ -33,6 +33,8 @@ fun TaskProvider<RunServer>.configureTask() {
     this.configure {
         minecraftVersion("1.21.7")
         jvmArgs("-Xmx4G", "-Xms4G", "-Dcom.mojang.eula.agree=true")
+        
+        downloadPlugins.url("https://download.luckperms.net/1594/bukkit/loader/LuckPerms-Bukkit-5.5.9.jar")
     }
 }
 

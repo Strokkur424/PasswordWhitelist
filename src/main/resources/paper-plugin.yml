@@ -16,3 +16,27 @@ permissions:
   passwordwhitelist.command.help:
     description: Permission required to run the '/passwordwhitelist help' subcommand
     default: true
+  
+  passwordwhitelist.command.reload:
+    description: Permission required to run the '/passwordwhitelist reload' subcommand
+    default: true
+  
+  passwordwhitelist.command.enable:
+    description: Permission required to run the '/passwordwhitelist enable' subcommand
+    default: true
+    
+  passwordwhitelist.command.disable:
+    description: Permission required to run the '/passwordwhitelist disable' subcommand
+    default: true
+    
+  passwordwhitelist.command.password:
+    description: Permission required to run the '/passwordwhitelist password' subcommand
+    default: true
+    
+  passwordwhitelist.command.password.set:
+    description: Permission required to run the '/passwordwhitelist password set' subcommand
+    default: false
+    
+  passwordwhitelist.command.password.show:
+    description: Permission required to run the '/passwordwhitelist password show' subcommand
+    default: false

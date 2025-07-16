@@ -39,6 +39,17 @@ class PasswordWhitelistCommand {
         messages().help().main(sender);
     }
 
+    @Executes("help")
+    @Permission("passwordwhitelist.command.help")
+    void executeHelp(CommandSender sender, @Literal({"reload", "enable", "disable", "password"}) String help) {
+        switch (help) {
+            case "reload" -> messages().help().reload(sender);
+            case "enable" -> messages().help().enable(sender);
+            case "disable" -> messages().help().disable(sender);
+            case "password" -> messages().help().password(sender);
+        }
+    }
+
     @Executes("reload")
     @Permission("passwordwhitelist.command.reload")
     void executeReload(CommandSender sender) {
@@ -47,12 +58,17 @@ class PasswordWhitelistCommand {
 
     @Executes("reload")
     @Permission("passwordwhitelist.command.reload")
-    void executeReload(CommandSender sender, @Literal({"all", "messages.yml"}) String config) {
+    void executeReload(CommandSender sender, @Literal({"all", "messages.yml", "password.properties"}) String config) {
         PasswordWhitelist plugin = PasswordWhitelist.getInstance();
 
         try {
             switch (config) {
-                case "all", "messages.yml" -> plugin.getMessagesConfig().reload(plugin);
+                case "messages.yml" -> plugin.getMessagesConfig().reload();
+                case "password.properties" -> plugin.getPasswordManager().reload();
+                case "all" -> {
+                    plugin.getMessagesConfig().reload(plugin);
+                    plugin.getPasswordManager().reload();
+                }
             }
 
             sender.sendMessage(messages().reload(Placeholder.unparsed("config", config)));
@@ -88,6 +104,18 @@ class PasswordWhitelistCommand {
             sender.sendRichMessage("<red>A fatal exception occurred running this command. Please check the console for any stack traces.");
             plugin.getComponentLogger().error("An error occurred disabling the password whitelist.", exception);
         }
+    }
+
+    @Executes("password")
+    @Permission("passwordwhitelist.command.password")
+    void executePasswordHelp(CommandSender sender) {
+        messages().help().password(sender);
+    }
+
+    @Executes("password set")
+    @Permission("passwordwhitelist.command.password.set")
+    void executePasswordSetHelp(CommandSender sender) {
+        messages().help().passwordSet(sender);
     }
 
     @Executes("password set")

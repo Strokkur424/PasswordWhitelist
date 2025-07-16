@@ -4,25 +4,76 @@
 #                                                                                                                     #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-prefix: '<b><#ff8708>PW</b> <b><dark_gray>•</b>'
-
+prefix: <b><#ff8708>PW</b> <b><dark_gray>•</b>
 reload: <prefix> <#ffb669>Successfully reloaded <color:#ff8708><config></color>.
-
 enable: <prefix> <#ffb669>Successfully <color:#ff8708>enabled</color> the password whitelist.
-
 disable: <prefix> <#ffb669>Successfully <color:#ff8708>disabled</color> the password whitelist.
-
 set: <prefix> <#ffb669>Successfully set the new password to <color:#ff8708><password></color>.
-
 show: <prefix> <#ffb669>The password is currently set to <color:#ff8708><password></color>.
 
 help:
   main: |
     <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
      <b><dark_gray>•</b> /passwordwhitelist help <dark_gray>—</dark_gray> <color:#ffb669>Show this message</color>
-     <b><dark_gray>•</b> /passwordwhitelist reload <dark_gray>—</dark_gray> <color:#ffb669>Reload the configs</color> 
+     <b><dark_gray>•</b> /passwordwhitelist reload [<file>]<dark_gray>—</dark_gray> <color:#ffb669>Reload plugin files</color> 
      <b><dark_gray>•</b> /passwordwhitelist enable <dark_gray>—</dark_gray> <color:#ffb669>Enable the password whitelist</color>
      <b><dark_gray>•</b> /passwordwhitelist disable <dark_gray>—</dark_gray> <color:#ffb669>Disable the password whitelist</color>
-     <b><dark_gray>•</b> /passwordwhitelist password set <dark_gray>—</dark_gray> <color:#ffb669>Set a new password</color>
-     <b><dark_gray>•</b> /passwordwhitelist password show <dark_gray>—</dark_gray> <color:#ffb669>Set a new password</color>
-    </#ff8708><strikethrough>                                                                                 </strikethrough></dark_gray>
+     <b><dark_gray>•</b> /passwordwhitelist password set <password> <dark_gray>—</dark_gray> <color:#ffb669>Set a new password</color>
+     <b><dark_gray>•</b> /passwordwhitelist password show <dark_gray>—</dark_gray> <color:#ffb669>Show the current password</color>
+    </#ff8708><strikethrough>                                                                                </strikethrough></dark_gray>
+  
+  reload: |
+    <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
+       Help for /passwordwhitelist reload [<file>]
+       <b><dark_gray>•</b> <color:#ffb669>Command used to reload some file(s) from disk.</color>
+    
+       Example usages:
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist reload</color> <dark_gray>—</dark_gray> <color:#ffb669>Reload all files</color>
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist reload</color> all <dark_gray>—</dark_gray> <color:#ffb669>Reload all files</color>
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist reload</color> messages.yml <dark_gray>—</dark_gray> <color:#ffb669>Reload the messages.yml file</color>
+    </#ff8708><strikethrough>                                                                                </strikethrough></dark_gray>
+  
+  enable: |
+    <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
+       Help for /passwordwhitelist enable
+       <b><dark_gray>•</b> <color:#ffb669>Command used to enable the password whitelist. Players who attempt to connect will have to enter the defined password. The command will not run successfully if no password is set, so make sure to set one beforehand using </color>/passwordwhitelist password set <password><color:#ffb669>.</color>
+    
+       Example usage:
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist enable</color>
+    
+       Tips:
+       <b><dark_gray>•</b> <color:#ffb669>If you want this command to also kick all online players, you can enable that behavior by editing the </color>config.yml<color:#ffb669> config file.
+    </#ff8708><strikethrough>                                                                                </strikethrough></dark_gray>
+  
+  disable: |
+    <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
+       Help for /passwordwhitelist disable
+       <b><dark_gray>•</b> <color:#ffb669>Command used to disable the password whitelist.</color>
+    
+       Example usage:
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist disable</color>
+    </#ff8708><strikethrough>                                                                                </strikethrough></dark_gray>
+  
+  password: |
+    <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
+       Help for /passwordwhitelist password <set | show>
+       <b><dark_gray>•</b> <color:#ffb669>Command used to manage the current password.</color>
+    
+       Example usages:
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist password </color>set newpassword789
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist password </color>show
+    
+       Tips:
+       <b><dark_gray>•</b> <color:#ffb669>If you cannot see any subcommands, it is likely that you are </color>missing the required permissions<color:#ffb669>. Make sure to give yourself either </color>passwordwhitelist.command.password.set<color:#ffb669> or </color>passwordwhitelist.command.password.show<color:#ffb669> with a permissions plugin like LuckPerms.
+    </#ff8708><strikethrough>                                                                                </strikethrough></dark_gray>
+  
+  password-set: |
+    <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
+       Help for /passwordwhitelist password set <password>
+       <b><dark_gray>•</b> <color:#ffb669>Command used to set a new password. The new password may have any length, may contain whitespace, and can even contain unicode characters.</color>
+    
+       Example usages:
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist password set </color>my cool password
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist password set </color>admin123
+       <b><dark_gray>•</b> <color:#ffb669>/passwordwhitelist password set </color>かみちゃん
+    </#ff8708><strikethrough>                                                                                </strikethrough></dark_gray>
