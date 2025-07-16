@@ -4,8 +4,13 @@
 #                                                                                                                     #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-dialog:
+max-incorrect-password-attempts: 2
+reset-attempts-on-correct: true
+
+password-dialog:
   title: <#b089f0><b>Server Password
+  
+  content-width: 400
   
   extra-text:
     - This server requires you enter a password before you may join the server. Please input it into the text box below.
@@ -13,7 +18,20 @@ dialog:
   label: Enter the password
   
   button-password-attempt: <#90f089>Join the server
-  button-password-attempt-hover: You have <#bbfaf9>infinite</#bbfaf9> attempts left.
+  button-password-attempt-hover: You have <#bbfaf9><remaining_attempts></#bbfaf9>/<max_attempts> attempts left.
   
   button-abort: <#f08989>Quit
   button-abort-hover: Leave the server.
+
+blocked-dialog:
+  title: <#f08989><b>Server Password
+  
+  content-width: 400
+  
+  extra-text:
+    - This server requires you enter a password before you may join the server.
+      Unfortunately, you have <#bbfaf9>0</#bbfaf9> password attempts remaining.
+      Please contact an administrator if you believe this to be a mistake.
+  
+  button: <#f08989>Quit
+  button-hover: Leave the server.

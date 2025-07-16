@@ -22,10 +22,15 @@ import java.util.List;
 @ConfigSerializable
 class MainConfigModel {
 
-    public Dialog dialog;
+    public int maxIncorrectPasswordAttempts;
+    public boolean resetAttemptsOnCorrect;
+    
+    public PasswordDialog passwordDialog;
+    
+    public BlockedDialog blockedDialog;
 
     @ConfigSerializable
-    static class Dialog {
+    static class PasswordDialog {
 
         @CustomParse("asComponent")
         String title;
@@ -47,6 +52,39 @@ class MainConfigModel {
         
         @CustomParse("asComponent")
         String buttonAbortHover;
+
+        int contentWidth = 400;
+
+        Component asComponent(String value, TagResolver... resolvers) {
+            return MiniMessage.miniMessage().deserialize(value, resolvers);
+        }
+
+        List<Component> asComponents(List<String> values, TagResolver... resolvers) {
+            List<Component> out = new ArrayList<>(values.size());
+            for (String value : values) {
+                out.add(asComponent(value, resolvers));
+            }
+            
+            return Collections.unmodifiableList(out);
+        }
+    }
+    
+    @ConfigSerializable
+    static class BlockedDialog {
+
+        @CustomParse("asComponent")
+        String title;
+
+        @CustomParse("asComponents")
+        List<String> extraText;
+        
+        @CustomParse("asComponent")
+        String button;
+        
+        @CustomParse("asComponent")
+        String buttonHover;
+        
+        int contentWidth = 400;
 
         Component asComponent(String value, TagResolver... resolvers) {
             return MiniMessage.miniMessage().deserialize(value, resolvers);

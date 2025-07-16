@@ -58,7 +58,7 @@ class PasswordWhitelistCommand {
 
     @Executes("reload")
     @Permission("passwordwhitelist.command.reload")
-    void executeReload(CommandSender sender, @Literal({"all", "messages.yml", "password.properties", "config.yml"}) String config) {
+    void executeReload(CommandSender sender, @Literal({"all", "messages.yml", "config.yml", "data/password.properties", "data/failed_attempts.json"}) String config) {
         PasswordWhitelist plugin = PasswordWhitelist.getInstance();
 
         try {
@@ -66,14 +66,16 @@ class PasswordWhitelistCommand {
                 case "messages.yml" -> plugin.getMessagesConfig().reload(plugin);
                 case "config.yml" -> {
                     plugin.getMainConfig().reload(plugin);
-                    plugin.reloadPasswordDialog();
+                    plugin.reloadDialogs();
                 }
-                case "password.properties" -> plugin.getPasswordManager().reload();
+                case "data/password.properties" -> plugin.getPasswordManager().reload();
+                case "data/failed_attempts.json" -> plugin.getFailedAttempts().reload();
                 case "all" -> {
                     plugin.getMessagesConfig().reload(plugin);
                     plugin.getMainConfig().reload(plugin);
-                    plugin.reloadPasswordDialog();
+                    plugin.reloadDialogs();
                     plugin.getPasswordManager().reload();
+                    plugin.getFailedAttempts().reload();
                 }
             }
 

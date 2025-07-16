@@ -1,20 +1,21 @@
 package net.strokkur.passwordwhitelist;
 
 import net.strokkur.passwordwhitelist.data.BasicPasswordManager;
+import net.strokkur.passwordwhitelist.data.FailedAttemptsStore;
+import net.strokkur.passwordwhitelist.data.JsonFailedAttemptsStore;
 import net.strokkur.passwordwhitelist.data.MainConfig;
 import net.strokkur.passwordwhitelist.data.MainConfigImpl;
 import net.strokkur.passwordwhitelist.data.MessagesConfig;
 import net.strokkur.passwordwhitelist.data.MessagesConfigImpl;
 import net.strokkur.passwordwhitelist.data.PasswordManager;
 import net.strokkur.passwordwhitelist.data.PasswordStore;
-import net.strokkur.passwordwhitelist.logic.PaperPasswordDialog;
+import net.strokkur.passwordwhitelist.logic.BlockedDialog;
 import net.strokkur.passwordwhitelist.logic.PasswordDialog;
+import net.strokkur.passwordwhitelist.logic.OpenableDialog;
 import net.strokkur.passwordwhitelist.logic.ServerJoinListener;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.checkerframework.checker.nullness.qual.MonotonicNonNull;
-
-import java.io.IOException;
 
 public class PasswordWhitelist extends JavaPlugin {
 
@@ -31,7 +32,13 @@ public class PasswordWhitelist extends JavaPlugin {
     private PasswordManager passwordManager = null;
     
     @MonotonicNonNull
-    private PasswordDialog passwordDialog = null;
+    private OpenableDialog passwordDialog = null;
+    
+    @MonotonicNonNull
+    private OpenableDialog blockedDialog = null;
+    
+    @MonotonicNonNull
+    private FailedAttemptsStore failedAttempts = null;
 
     private boolean disablePlugin = false;
 
@@ -48,12 +55,15 @@ public class PasswordWhitelist extends JavaPlugin {
             messagesConfig = new MessagesConfigImpl();
             messagesConfig.reload(this);
 
-            BasicPasswordManager basicPasswordManager = new BasicPasswordManager(this.getDataPath().resolve("password.properties"));
+            BasicPasswordManager basicPasswordManager = new BasicPasswordManager(this.getDataPath().resolve("data/password.properties"));
             passwordStore = basicPasswordManager;
             passwordManager = basicPasswordManager;
 
+            failedAttempts = new JsonFailedAttemptsStore(this.getDataPath().resolve("data/failed_attempts.json"));
+            failedAttempts.reload();
+
             basicPasswordManager.reload();
-            reloadPasswordDialog();
+            reloadDialogs();
         } catch (Exception exception) {
             disablePlugin = true;
             getComponentLogger().error("A fatal exception has occurred. {} will disable itself...", getPluginMeta().getName(), exception);
@@ -70,8 +80,9 @@ public class PasswordWhitelist extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new ServerJoinListener(), this);
     }
     
-    public void reloadPasswordDialog() {
-        passwordDialog = new PaperPasswordDialog(mainConfig);
+    public void reloadDialogs() {
+        passwordDialog = new PasswordDialog(mainConfig, failedAttempts);
+        blockedDialog = new BlockedDialog(mainConfig);
     }    
     
     public MainConfig getMainConfig() {
@@ -85,12 +96,20 @@ public class PasswordWhitelist extends JavaPlugin {
     public PasswordStore getPasswordStore() {
         return passwordStore;
     }
+    
+    public FailedAttemptsStore getFailedAttempts() {
+        return failedAttempts;
+    }
 
     public PasswordManager getPasswordManager() {
         return passwordManager;
     }
     
-    public PasswordDialog getPasswordDialog() {
+    public OpenableDialog getPasswordDialog() {
         return passwordDialog;
+    }
+    
+    public OpenableDialog getBlockedDialog() {
+        return blockedDialog;
     }
 }
