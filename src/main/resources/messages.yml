@@ -5,8 +5,9 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 colors:
-  primary: <#db57ff>
+  primary: <#b089f0>
   secondary: <#d7aae3>
+  error: <#f08989>
 
 tags:
   header_top: <dark_gray><!shadow><strikethrough>                                    </strikethrough>[ </!shadow><b><primary>PW</b><!shadow> ]<strikethrough>                                    </strikethrough></!shadow></dark_gray>
@@ -20,6 +21,9 @@ enable: <prefix> <secondary>Successfully <primary>enabled</primary> the password
 disable: <prefix> <secondary>Successfully <primary>disabled</primary> the password whitelist.
 set: <prefix> <secondary>Successfully set the new password to <primary><password></primary>.
 show: <prefix> <secondary>The password is currently set to <primary><password></primary>.
+
+password-incorrect: <error>Incorrect password.
+disconnect: <error>You have disconnected.
 
 help:
   main: |-

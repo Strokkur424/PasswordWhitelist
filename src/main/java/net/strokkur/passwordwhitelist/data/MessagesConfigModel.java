@@ -43,6 +43,12 @@ class MessagesConfigModel {
     @CustomParse("parseWithPrefix")
     String show;
 
+    @CustomParse("parseWithPrefix")
+    String passwordIncorrect;
+
+    @CustomParse("parseWithPrefix")
+    String disconnect;
+
     Help help;
 
     public Component parseWithPrefix(String message, TagResolver... resolvers) {
