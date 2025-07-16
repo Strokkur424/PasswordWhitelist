@@ -5,20 +5,15 @@
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
 dialog:
-  title: A title
+  title: <#b089f0><b>Server Password
   
   extra-text:
-    - Some cool text
-    - I guess?
+    - This server requires you enter a password before you may join the server. Please input it into the text box below.
   
   label: Enter the password
   
-  button-password-attempt: <green>Try it!
+  button-password-attempt: <#90f089>Join the server
+  button-password-attempt-hover: You have <#bbfaf9>infinite</#bbfaf9> attempts left.
   
-  button-password-attempt-hover: Do it!
-  
-  button-abort: <red>Quit!
-  
-  button-abort-hover: Press to quit!
-  
-  
+  button-abort: <#f08989>Quit
+  button-abort-hover: Leave the server.
