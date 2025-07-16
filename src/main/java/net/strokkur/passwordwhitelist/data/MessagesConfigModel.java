@@ -25,6 +25,12 @@ class MessagesConfigModel {
     @CustomParse("parseWithPrefix")
     String reload;
 
+    @CustomParse("parseWithPrefix")
+    String enable;
+
+    @CustomParse("parseWithPrefix")
+    String disable;
+
     Help help;
     
     public Component parseWithPrefix(String message, TagResolver... resolvers) {

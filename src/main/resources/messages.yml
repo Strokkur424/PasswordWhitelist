@@ -8,6 +8,10 @@ prefix: '<b><#ff8708>PW</b> <b><dark_gray>•</b>'
 
 reload: <prefix> <#ffb669>Successfully reloaded <color:#ff8708><config></color>.
 
+enable: <prefix> <#ffb669>Successfully <color:#ff8708>enabled</color> the password whitelist.
+
+disable: <prefix> <#ffb669>Successfully <color:#ff8708>disabled</color> the password whitelist.
+
 help:
   main: |
     <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
