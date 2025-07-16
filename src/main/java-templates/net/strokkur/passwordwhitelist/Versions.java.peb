@@ -1,0 +1,5 @@
+package net.strokkur.passwordwhitelist;
+    
+class Versions {
+    public static String CONFIGURATE = "{{ configurate }}";
+}

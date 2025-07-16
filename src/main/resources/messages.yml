@@ -1,0 +1,20 @@
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+#                                                                                                                     #
+#                                           PasswordWhitelist Configuration                                           #
+#                                                                                                                     #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+
+prefix: '<b><#ff8708>PW</b> <b><dark_gray>•</b>'
+
+reload: <prefix> <#ffb669>Successfully reloaded <color:#ff8708><config></color>.
+
+help:
+  main: |
+    <dark_gray><strikethrough>                                                                                </strikethrough><#ff8708>
+     <b><dark_gray>•</b> /passwordwhitelist help <dark_gray>—</dark_gray> <color:#ffb669>Show this message</color>
+     <b><dark_gray>•</b> /passwordwhitelist reload <dark_gray>—</dark_gray> <color:#ffb669>Reload the configs</color> 
+     <b><dark_gray>•</b> /passwordwhitelist enable <dark_gray>—</dark_gray> <color:#ffb669>Enable the password whitelist</color>
+     <b><dark_gray>•</b> /passwordwhitelist disable <dark_gray>—</dark_gray> <color:#ffb669>Disable the password whitelist</color>
+     <b><dark_gray>•</b> /passwordwhitelist password set <dark_gray>—</dark_gray> <color:#ffb669>Set a new password</color>
+     <b><dark_gray>•</b> /passwordwhitelist password show <dark_gray>—</dark_gray> <color:#ffb669>Set a new password</color>
+    </#ff8708><strikethrough>                                                                                 </strikethrough></dark_gray>

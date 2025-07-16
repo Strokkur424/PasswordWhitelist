@@ -3,6 +3,7 @@ import xyz.jpenilla.runpaper.task.RunServer
 plugins {
     id("java")
     id("xyz.jpenilla.run-paper") version "2.3.1"
+    id("net.kyori.blossom") version "2.1.0"
 }
 
 group = "net.strokkur"
@@ -23,6 +24,9 @@ dependencies {
     // StrokkConfig
     compileOnly("net.strokkur:strokk-config-annotations:1.0.2")
     annotationProcessor("net.strokkur:strokk-config-processor:1.0.2")
+
+    // Configurate
+    compileOnly("org.spongepowered:configurate-yaml:${libs.versions.configurate.get()}")
 }
 
 fun TaskProvider<RunServer>.configureTask() {
@@ -50,4 +54,10 @@ java {
     toolchain.languageVersion.set(JavaLanguageVersion.of(21))
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
+}
+
+sourceSets.main {
+    blossom.javaSources {
+        property("configurate", libs.versions.configurate.get())
+    }
 }
