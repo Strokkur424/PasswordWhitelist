@@ -6,8 +6,8 @@
 
 # A little QoL field to define preset colors. This can also contain style tags.
 colors:
-  primary: <#b089f0>
-  secondary: <#d7aae3>
+  primary: <#fa8b34>
+  secondary: <#b5b5b5>
   error: <#f08989>
 
 # Another QoL field for defining preset text. The values are pasted into the result text literally, meaning

@@ -1,7 +1,10 @@
 name: PasswordWhitelist
 version: $version
 api-version: $mcVersion
+
 author: Strokkur24
+description: A Paper plugin for setting a global password for your server.
+website: https://github.com/Strokkur424/PasswordWhitelist
 
 folia-supported: true
 
